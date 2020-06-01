@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            min-width: 340px;
+        }
+        #data{
+            width: 340px;
+            height: 350px;
+            padding: 20px 0 0;
+            box-sizing: border-box;
+            border: 1px solid #000;
+        }
+        #data p{
+            display: flex;
+            justify-content: space-around;
+        }
+        #prev,#next{
+            cursor: pointer;
+        }
+        #data h5{
+            text-align: center;
+            margin: 10px 0;
+        } 
+        ul{
+            list-style: none;
+        }
+        #title{
+            padding: 0 30px ;
+            text-align: center;
+            background-color: gray;
+        }
+        #title>li{
+            width: 35px;
+            line-height: 35px;
+            display: inline-block;
+            
+        }
+        #date{
+            padding: 20px 28px;
+        }
+        #date>li{
+            float: left;
+            width: 40px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .active{
+            color: red;
+        }
+        .hover:hover{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="data">
+        <p>
+            <span id="prev">上个月</span>
+            <span id="year">1970</span>
+            <span id="next">下个月</span>
+        </p>
+        <h5 id="month">一月</h5>
+        <ul id="title">
+            <li>日</li>
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li>六</li>
+        </ul>
+        <ul id="date"></ul>
+    </div>
+</body>
+<script>
+    let date = new Date();
+    init();
+    function init(){
+        let arr = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+        let cYear = date.getFullYear();
+        let cMonth = date.getMonth();
+        let cWeek = new Date(cYear, cMonth, 1).getDay();
+        let cDay = date.getDate();
+        let days = new Date(cYear, cMonth+1, 0).getDate();
+        document.getElementById('year').innerText = cYear;
+        document.getElementById('month').innerText = arr[cMonth];
+        let html = '';
+        for(let i = 0; i < cWeek; i++){
+            html +='<li></li>'
+        }
+        for(let i = 1; i <= days; i++){
+            if(i == cDay){
+                html +='<li class="active">'+i+'</li>'
+            }else{
+                html +='<li class="hover">'+i+'</li>'
+            }
+        }
+        console.log(html);
+        document.getElementById('date').innerHTML = html;
+    }
+    document.getElementById("prev").onclick=function(){
+        date.setMonth(date.getMonth()-1);
+        init();
+    }
+    document.getElementById("next").onclick=function(){
+        date.setMonth(date.getMonth()+1);
+        init();
+    }
+
+</script>
+</html>
