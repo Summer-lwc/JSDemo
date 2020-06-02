@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var subwin = null;
+    setTimeout(function(){
+        subwin = window.open('','_blank','width=300,height=300');
+        var x = window.outerWidth/2 - subwin.outerWidth/2;
+        var y = window.outerHeight/2 - subwin.outerHeight/2;
+        subwin.moveTo(x,y);
+    },1000);
+
+    setTimeout(function(){
+        if(!subwin.closed){
+            subwin.close();
+        }
+    },2000)
+</script>
+</html>
