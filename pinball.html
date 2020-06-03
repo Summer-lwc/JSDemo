@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dv{
+            position: absolute;
+            width: 800px;
+            height: 600px;
+            left: 100px;
+            top: 100px;
+            background-color: #999;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="弹出球" onclick="pinball()">
+    <div id="dv"></div>
+</body>
+<script>
+    var dv = document.getElementById('dv');
+    var colors = ['red', 'yellow', 'blue', 'green','gray','black','yellowgreen','#FF00FF','#AA0011','#235098'];
+    var speeds = [5,10,15,20];
+    var sizes = [10,25,30,35,40,45,50];
+    function pinball(){
+        var size = sizes[Math.floor(Math.random()*sizes.length)];
+        var ball = document.createElement('div');
+        ball.style.cssText = 'position:absolute;border-radius:50%';
+        ball.style.width =  size + 'px';
+        ball.style.height = size + 'px';
+        ball.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+        dv.appendChild(ball);
+
+        var left = dv.clientWidth/2 - ball.offsetLeft/2;
+        var top = dv.clientHeight/2 - ball.offsetTop/2;
+        ball.style.left = left +'px';
+        ball.style.top = top + 'px';
+        console.log(dv.offsetLeft,dv.offsetTop);
+        var speed = speeds[Math.floor(Math.random()*speeds.length)];
+        var x = speed;
+        var y = speed;
+        setInterval(() => {
+            left += x;
+            top += y;
+            if( top <= 0 || top >= dv.offsetHeight - ball.offsetHeight ){
+                y = -y;
+            }
+            if( left <= 0 || left >= dv.offsetWidth - ball.offsetWidth ){
+                x = -x;
+            }
+            ball.style.left = left +'px';
+            ball.style.top = top + 'px';
+        }, 100);
+    }
+</script>
+</html>
