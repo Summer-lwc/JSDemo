@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        position: relative;
+    }
+    #img{
+        position: absolute;
+    }
+</style>
+<body>
+    <img src="https://i0.hdslb.com/bfs/archive/e62b6b095ef38dfb742687f11e4b570dde420b5d.png" alt="bilibili夏" id="img">
+
+</body>
+<script>
+    var img = document.getElementById('img');
+    window.onmousemove = function(e){
+        var event = e || window.event;
+        var x = event.clientX;
+        var y = event.clientY;
+        var max_X = document.body.clientWidth - img.offsetWidth;
+        x = x >= max_X ? max_X : x;
+        img.style.left = x + 'px';
+        img.style.top = y + 'px';
+    }
+</script>
+</html>
