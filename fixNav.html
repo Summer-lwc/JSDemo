@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    #top{
+        background-color: rgb(164, 204, 255);
+        height: 20vh;
+    }
+    #nav{
+        background-color: rgb(100, 167, 255);
+        height: 10vh;
+        width: 100vw;
+    }
+    #main{
+        background-color: rgb(9, 107, 236);
+        height: 120vh;
+    }
+</style>
+<body>
+    <div id="top">top</div>
+    <div id="nav">nav</div>
+    <div id="main">main</div>
+</body>
+<script>
+    var top1 = document.getElementById('top');
+    var nav = document.getElementById('nav');
+    var main = document.getElementById('main');
+    window.onscroll = function(){
+        if(document.documentElement.scrollTop >= top1.offsetHeight){
+            nav.style.cssText = 'position:fixed; top:0px';
+        }else{
+            nav.style.cssText = 'position:static';
+        }
+    }
+</script>
+</html>
